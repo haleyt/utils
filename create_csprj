@@ -1,0 +1,50 @@
+#!/bin/bash
+
+find . -name \*.[ch] \
+	-o -name \*.[Ss] \
+	-o -name \*.cpp \
+	-o -name \*.hpp \
+	-o -name \*.cxx \
+	-o -name \*.hxx \
+	-o -name \*.[CH] \
+	-o -name \*.cc \
+	-o -name \*.java > cscope.files.total
+
+if [ "$1" == "kernel" ]; then
+	# for CPU architecture specific files, just add arch/arm/* in the file list
+	grep -v "arch/alpha/" ./cscope.files.total | \
+	grep -v "arch/avr32/" | \
+	grep -v "arch/blackfin/" | \
+	grep -v "arch/c6x/" | \
+	grep -v "arch/cris/" | \
+	grep -v "arch/frv/" | \
+	grep -v "arch/h8300/" | \
+	grep -v "arch/hexagon/" | \
+	grep -v "arch/ia64/" | \
+	grep -v "arch/m32r/" | \
+	grep -v "arch/m68k/" | \
+	grep -v "arch/m68knommu/" | \
+	grep -v "arch/microblaze/" | \
+	grep -v "arch/mips/" | \
+	grep -v "arch/mn10300/" | \
+	grep -v "arch/openrisc/" | \
+	grep -v "arch/parisc/" | \
+	grep -v "arch/powerpc/" | \
+	grep -v "arch/s390/" | \
+	grep -v "arch/score/" | \
+	grep -v "arch/sh/" | \
+	grep -v "arch/sparc/" | \
+	grep -v "arch/tile/" | \
+	grep -v "arch/um/" | \
+	grep -v "arch/unicore32/" | \
+	grep -v "arch/x86/" | \
+	grep -v "arch/xtensa/" > ./cscope.files
+else
+	cp ./cscope.files.total ./cscope.files
+fi
+
+rm -rf ./cscope.files.total
+rm -rf ./cscope.out
+
+cscope -kb
+
