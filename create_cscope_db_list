@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export CS_DB_LIST_FILE=`pwd`/cscope_db.list
+
+rm -f $CS_DB_LIST_FILE
+
+# create tags for each repository (use special argument for the 'kernel' folder)
+repo forall -c 'pwd; if [ "`pwd | xargs basename`" = "kernel" ]; then create_tags kernel; else create_tags; fi'
+
+# add each repository to database list
+repo forall -c "echo -n 'cs add ' >> $CS_DB_LIST_FILE; pwd | xargs echo -n >> $CS_DB_LIST_FILE; echo -n '/cscope.out ' >> $CS_DB_LIST_FILE; pwd | xargs echo >> $CS_DB_LIST_FILE"
+
