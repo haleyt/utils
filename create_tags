@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "creating cscope tags ..."
+create_csprj $@
+#echo "creating filename tags ..."
+#create_filenametags $@
+echo "done."
+
