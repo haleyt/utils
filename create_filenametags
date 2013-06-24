@@ -4,6 +4,7 @@ echo -e "!_TAG_FILE_SORTED\t2\t/2=foldcase/" > ./filenametags.total
 find . -type f \( \
 	-name "*.[ch]" -o \
 	-name "*.[sS]" -o \
+	-name "*.arm" -o \
 	-name "*.[ch]pp" -o \
 	-name "*.[ch]xx" -o \
 	-name "*.[CH]" -o \

@@ -2,6 +2,7 @@
 
 find . -name \*.[ch] \
 	-o -name \*.[Ss] \
+	-o -name \*.arm \
 	-o -name \*.cpp \
 	-o -name \*.hpp \
 	-o -name \*.cxx \
