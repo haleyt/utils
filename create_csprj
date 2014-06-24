@@ -9,6 +9,7 @@ find . -name \*.[ch] \
 	-o -name \*.hxx \
 	-o -name \*.[CH] \
 	-o -name \*.cc \
+	-o -name \*.idl \
 	-o -name \*.java > cscope.files.total
 
 if [ "$1" == "kernel" ]; then
